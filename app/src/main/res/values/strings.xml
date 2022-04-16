@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UnitTestApp</string>
+    <string name="navigation_route_home">Home</string>
+    <string name="navigation_route_list">List</string>
+    <string name="navigation_route_account">Account</string>
+    <string name="button_home_change_page_no_value">換頁,不帶值</string>
+    <string name="button_home_change_page_value">換頁,帶值</string>
+    <string name="text_field_label_text">請輸入內容</string>
+</resources>
