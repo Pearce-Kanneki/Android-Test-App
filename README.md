@@ -1,5 +1,5 @@
-# Android-Test-App. 
-### 此專案用於練習Android App測試用途
+# Android-Test-App.
+### 此專案用於練習Android App測試用途(製作練習中)
 練習項目
 1. Unit Test
 2. UI Test
