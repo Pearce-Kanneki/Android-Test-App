@@ -34,11 +34,8 @@ fun DetailPage(navController: NavHostController ,value: String?) {
         }
     ) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            value?.let {
-                Text(text = "Test: $it")
-            } ?: run {
-                Text(text = "Not Value")
-            }
+            val message = value?.let { "Test: $it" }?:"Not Value"
+            Text(text = message)
         }
     }
 

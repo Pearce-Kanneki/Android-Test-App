@@ -5,10 +5,11 @@ import androidx.lifecycle.ViewModel
 
 class HomeViewModel: ViewModel() {
 
-    var textValue = mutableStateOf("")
+    val textValue = mutableStateOf("")
+    val openDialog = mutableStateOf(false)
 
-    fun changePageNoValue() {
-
+    fun changePageNoValue(): Boolean {
+        return textValue.value.isNotBlank()
     }
 
 }

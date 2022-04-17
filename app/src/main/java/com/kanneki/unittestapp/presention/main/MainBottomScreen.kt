@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kanneki.unittestapp.data.BottomNavigationScreen
@@ -38,7 +39,13 @@ fun BottomNavigationBar(navController: NavController) {
                         alwaysShowLabel = true,
                         onClick = {
                             if (currentRoute != item.rounte) {
-                                navController.navigate(item.rounte)
+                                navController.navigate(item.rounte){
+                                    popUpTo(navController.graph.findStartDestination().id){
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = false
+                                }
                             }
                         }
                     )

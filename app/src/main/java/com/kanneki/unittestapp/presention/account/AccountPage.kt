@@ -20,20 +20,26 @@ fun AccountPage(viewModel: AccountViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth().padding(start = 20.dp).padding(end = 20.dp),
-            value = viewModel.account.value,
-            onValueChange = { viewModel.account.value = it},
-            label = { Text(text = "請輸入帳號") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp)
+                .padding(end = 20.dp),
+            value = viewModel.account.value ?: "",
+            onValueChange = { viewModel.setAccount(it)},
+            label = { Text(stringResource(id = R.string.account_page_account_hint)) },
             maxLines = 1
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth().padding(start = 20.dp).padding(end = 20.dp),
-            value = viewModel.password.value,
-            onValueChange = { viewModel.password.value = it},
-            label = { Text(text = "請輸入密碼") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp)
+                .padding(end = 20.dp),
+            value = viewModel.password.value ?: "",
+            onValueChange = { viewModel.setPassword(it)},
+            label = { Text(stringResource(id = R.string.account_page_password_hint)) },
             visualTransformation = PasswordVisualTransformation(),
             maxLines = 1
         )
@@ -41,16 +47,24 @@ fun AccountPage(viewModel: AccountViewModel) {
         Spacer(modifier = Modifier.height(20.dp))
 
         Button(
-            modifier = Modifier.fillMaxWidth().padding(start = 20.dp).padding(end = 20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp)
+                .padding(end = 20.dp),
             onClick = { viewModel.sendData() }
         ) {
-            Text(text = "送出")
+            Text(stringResource(id = R.string.button_send))
         }
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        if (viewModel.message.value.isNotBlank()) {
-            Text(text = viewModel.message.value)
+        if (viewModel.loginData.value == null) {
+            Text(text = viewModel.message.value ?: "")
+        } else {
+            Text(
+                text = stringResource(id = R.string.account_page_welcome_user)
+                        + viewModel.loginData.value?.userName
+            )
         }
     }
 }

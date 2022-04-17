@@ -1,4 +1,4 @@
-package com.kanneki.unittestapp.data.module
+package com.kanneki.unittestapp.domain.module
 
 data class ShowData(
     val id: Int,

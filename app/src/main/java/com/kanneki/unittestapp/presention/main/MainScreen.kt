@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kanneki.unittestapp.data.BottomNavigationScreen
+import com.kanneki.unittestapp.data.repository.GetUserRepositoryImpl
+import com.kanneki.unittestapp.domain.use_case.GetFindUserInfo
 import com.kanneki.unittestapp.presention.account.AccountPage
 import com.kanneki.unittestapp.presention.account.AccountViewModel
 import com.kanneki.unittestapp.presention.home.HomePage
@@ -31,7 +33,7 @@ fun MainScreenNavigationConfigurations(
             ListPage(padding,ListViewModel())
         }
         composable(BottomNavigationScreen.Account.rounte) {
-            AccountPage(AccountViewModel())
+            AccountPage(AccountViewModel(GetFindUserInfo(GetUserRepositoryImpl())))
         }
     }
 }

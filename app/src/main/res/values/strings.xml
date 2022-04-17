@@ -6,4 +6,14 @@
     <string name="button_home_change_page_no_value">換頁,不帶值</string>
     <string name="button_home_change_page_value">換頁,帶值</string>
     <string name="text_field_label_text">請輸入內容</string>
+    <string name="button_send">送出</string>
+
+    // Account
+    <string name="account_page_account_hint">請輸入帳號</string>
+    <string name="account_page_password_hint">請輸入密碼</string>
+    <string name="account_page_welcome_user">登入使用者:</string>
+
+    // AlertDialog
+    <string name="message_dialog_title">提示</string>
+    <string name="message_dialog_message_no_value">資料不可以空白</string>
 </resources>
