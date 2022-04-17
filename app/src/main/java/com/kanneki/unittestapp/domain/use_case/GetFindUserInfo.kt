@@ -12,8 +12,8 @@ class GetFindUserInfo(
 
     operator fun invoke(account: String?, password: String?): Flow<Resource<UserData>> {
         return when{
-            account?.isBlank() == true -> flow { emit(Resource.Error("Not Account")) }
-            password?.isBlank() == true -> flow { emit(Resource.Error("Not Password")) }
+            account.isNullOrBlank() -> flow { emit(Resource.Error("Not Account")) }
+            password.isNullOrBlank() -> flow { emit(Resource.Error("Not Password")) }
             else ->repository.getUserData(account, password)
         }
     }
