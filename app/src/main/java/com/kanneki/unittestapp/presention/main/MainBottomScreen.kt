@@ -41,7 +41,7 @@ fun BottomNavigationBar(navController: NavController) {
                             if (currentRoute != item.rounte) {
                                 navController.navigate(item.rounte){
                                     popUpTo(navController.graph.findStartDestination().id){
-                                        saveState = true
+                                        saveState = false
                                     }
                                     launchSingleTop = true
                                     restoreState = false
