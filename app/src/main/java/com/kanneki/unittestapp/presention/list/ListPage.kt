@@ -12,13 +12,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.kanneki.unittestapp.domain.module.ShowData
 
 @Composable
-fun ListPage(padding: PaddingValues, viewModel: ListViewModel) {
+fun ListPage(viewModel: ListViewModel = hiltViewModel()) {
 
     Scaffold(
-        modifier = Modifier.padding(bottom = padding.calculateBottomPadding()),
         floatingActionButton = {
             FloatingActionButton(onClick = { viewModel.addData() }) {
                 Icon(

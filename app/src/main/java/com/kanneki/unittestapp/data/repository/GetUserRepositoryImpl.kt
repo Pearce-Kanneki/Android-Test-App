@@ -6,7 +6,7 @@ import com.kanneki.unittestapp.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class GetUserRepositoryImpl: GetUserRepository {
+class GetUserRepositoryImpl(): GetUserRepository {
 
     override fun getUserData(account: String?, password: String?): Flow<Resource<UserData>> = flow {
         getUserList().find {

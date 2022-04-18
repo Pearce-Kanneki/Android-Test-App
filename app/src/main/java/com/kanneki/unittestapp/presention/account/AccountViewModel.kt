@@ -9,15 +9,20 @@ import com.kanneki.unittestapp.R
 import com.kanneki.unittestapp.data.fake.UserData
 import com.kanneki.unittestapp.domain.use_case.GetFindUserInfo
 import com.kanneki.unittestapp.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AccountViewModel(private val getFindUserInfo: GetFindUserInfo): ViewModel() {
+@HiltViewModel
+class AccountViewModel @Inject constructor(
+    private val getFindUserInfo: GetFindUserInfo
+) : ViewModel() {
     private val _account = mutableStateOf<String?>("")
-    val account:State<String?> = _account
+    val account: State<String?> = _account
     private val _password = mutableStateOf<String?>("")
-    val password:State<String?> = _password
+    val password: State<String?> = _password
     private val _loginData = mutableStateOf<UserData?>(null)
     val loginData: State<UserData?> = _loginData
 
@@ -35,7 +40,7 @@ class AccountViewModel(private val getFindUserInfo: GetFindUserInfo): ViewModel(
     fun sendData() {
         viewModelScope.launch {
             getFindUserInfo.invoke(account.value, password.value).onEach { result ->
-                when(result) {
+                when (result) {
                     is Resource.Success -> {
                         _loginData.value = result.data
                         _message.value = result.message

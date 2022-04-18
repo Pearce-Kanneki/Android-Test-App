@@ -10,13 +10,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.kanneki.unittestapp.R
 import com.kanneki.unittestapp.data.Screen
 import com.kanneki.unittestapp.presention.compose.MessageDialog
 
 @Composable
-fun HomePage(navHostController: NavHostController, viewModel: HomeViewModel) {
+fun HomePage(
+    navHostController: NavHostController,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -25,7 +29,10 @@ fun HomePage(navHostController: NavHostController, viewModel: HomeViewModel) {
         ) {
 
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth().padding(start = 20.dp).padding(end = 20.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp)
+                    .padding(end = 20.dp),
                 value = viewModel.textValue.value,
                 onValueChange = { viewModel.textValue.value = it },
                 label = { Text(stringResource(id = R.string.text_field_label_text)) },
@@ -40,7 +47,7 @@ fun HomePage(navHostController: NavHostController, viewModel: HomeViewModel) {
                     .padding(start = 20.dp)
                     .padding(end = 20.dp),
                 onClick = {
-                    if (viewModel.changePageNoValue()){
+                    if (viewModel.changePageNoValue()) {
                         navHostController.navigate(Screen.Detail.route + "/${viewModel.textValue.value}")
                     } else {
                         viewModel.openDialog.value = true

@@ -1,7 +1,11 @@
 package com.kanneki.unittestapp.presention.main
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,17 +27,18 @@ fun MainScreenNavigationConfigurations(
 ) {
 
     NavHost(
+        modifier = Modifier.padding(bottom = padding.calculateBottomPadding()),
         navController = mainNav,
         startDestination = BottomNavigationScreen.Home.rounte
     ) {
         composable(BottomNavigationScreen.Home.rounte) {
-            HomePage(navController, HomeViewModel())
+            HomePage(navController)
         }
         composable(BottomNavigationScreen.List.rounte) {
-            ListPage(padding,ListViewModel())
+            ListPage()
         }
         composable(BottomNavigationScreen.Account.rounte) {
-            AccountPage(AccountViewModel(GetFindUserInfo(GetUserRepositoryImpl())))
+            AccountPage()
         }
     }
 }

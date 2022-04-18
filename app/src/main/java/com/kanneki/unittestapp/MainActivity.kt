@@ -13,7 +13,9 @@ import com.kanneki.unittestapp.data.Screen
 import com.kanneki.unittestapp.presention.detail.DetailPage
 import com.kanneki.unittestapp.presention.main.MainPage
 import com.kanneki.unittestapp.ui.theme.UnitTestAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
