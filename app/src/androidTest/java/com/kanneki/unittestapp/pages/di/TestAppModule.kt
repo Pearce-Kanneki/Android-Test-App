@@ -1,4 +1,4 @@
-package com.kanneki.unittestapp.di
+package com.kanneki.unittestapp.pages.di
 
 import com.kanneki.unittestapp.data.repository.GetUserRepositoryImpl
 import com.kanneki.unittestapp.domain.repository.GetUserRepository
@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object TestAppModule {
 
     @Provides
     @Singleton

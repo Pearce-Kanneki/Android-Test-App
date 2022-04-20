@@ -11,7 +11,7 @@
     // Account
     <string name="account_page_account_hint">請輸入帳號</string>
     <string name="account_page_password_hint">請輸入密碼</string>
-    <string name="account_page_welcome_user">登入使用者:</string>
+    <string name="account_page_welcome_user">登入使用者: %s</string>
 
     // AlertDialog
     <string name="message_dialog_title">提示</string>
