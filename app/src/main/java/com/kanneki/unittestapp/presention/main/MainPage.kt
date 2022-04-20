@@ -1,9 +1,9 @@
 package com.kanneki.unittestapp.presention.main
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,17 +20,23 @@ fun MainPage() {
 
     Scaffold(
         topBar = {
-            if (showBottomBar.value) {
-                TopAppBar(
-                    title = {
-                        Text(
-                            modifier = Modifier.fillMaxWidth(),
-                            text = "Android Test App",
-                            textAlign = TextAlign.Center
-                        )
+            TopAppBar(
+                title = {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = if (showBottomBar.value) "Android Test App" else "Detail",
+                        textAlign = TextAlign.Start
+                    )
+                },
+                navigationIcon = {
+                    if (!showBottomBar.value) {
+                        IconButton(onClick = { navController.popBackStack() }) {
+                            Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "back")
+                        }
                     }
-                )
-            }
+
+                }
+            )
         },
         bottomBar = {
             if (showBottomBar.value)
