@@ -1,5 +1,6 @@
 package com.kanneki.unittestapp.pages
 
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,6 +11,9 @@ import com.kanneki.unittestapp.data.BottomNavigationScreen
 import com.kanneki.unittestapp.di.AppModule
 import com.kanneki.unittestapp.presention.home.HomePage
 import com.kanneki.unittestapp.ui.theme.UnitTestAppTheme
+import com.kanneki.unittestapp.util.UtilTag.TAG_BUTTON_VALUE
+import com.kanneki.unittestapp.util.UtilTag.TAG_DIALOG_MESSAGE
+import com.kanneki.unittestapp.util.UtilTag.TAG_TEXT_FIELD_PAGE_INDEX
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -23,14 +27,10 @@ import org.junit.runner.RunWith
 class HomePageUITest {
 
     @get:Rule(order = 0)
-    val hiltRule = HiltAndroidRule(this)
-
-    @get:Rule(order = 1)
     val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Before
     fun setUp() {
-        hiltRule.inject()
         composeRule.setContent {
             val navController = rememberNavController()
 
@@ -48,7 +48,18 @@ class HomePageUITest {
     }
 
     @Test
-    fun clickToggleNotValueButton_isChangerPage() {
+    fun clickButton_textFiledIsNotValue_showDialog() {
+        with(composeRule) {
 
+            // 檢查Hint
+            onNodeWithTag(TAG_TEXT_FIELD_PAGE_INDEX).assert(hasText("請輸入內容"))
+
+            // 點擊Button
+            onNodeWithTag(TAG_BUTTON_VALUE).performClick()
+            waitForIdle()
+
+            // 檢查是否出現Dialog提示
+            onNodeWithTag(TAG_DIALOG_MESSAGE).assertIsDisplayed()
+        }
     }
 }

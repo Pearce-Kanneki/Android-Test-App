@@ -11,16 +11,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kanneki.unittestapp.domain.module.ShowData
+import com.kanneki.unittestapp.util.UtilTag.TAG_FLOAT_ACTION_BUTTON_ADD
+import com.kanneki.unittestapp.util.UtilTag.TAG_ITEMS_LIST
 
 @Composable
 fun ListPage(viewModel: ListViewModel = hiltViewModel()) {
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = { viewModel.addData() }) {
+            FloatingActionButton(
+                modifier = Modifier.testTag(TAG_FLOAT_ACTION_BUTTON_ADD),
+                onClick = { viewModel.addData() }
+            ) {
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = "add",
@@ -29,7 +35,7 @@ fun ListPage(viewModel: ListViewModel = hiltViewModel()) {
             }
         }
     ) {
-        LazyColumn {
+        LazyColumn(modifier = Modifier.testTag(TAG_ITEMS_LIST)) {
             items(items = viewModel.list, key = { it.id }) { data ->
                 ListItem(data = data)
             }
