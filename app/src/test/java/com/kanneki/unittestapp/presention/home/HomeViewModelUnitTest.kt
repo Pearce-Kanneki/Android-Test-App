@@ -15,7 +15,7 @@ class HomeViewModelUnitTest {
 
     @Test
     fun `Text value is empty, changer page return false`() {
-        viewModel.textValue.value = ""
+        viewModel.textValue = ""
         val testResult = viewModel.changePageNoValue()
 
         assertThat(testResult).isFalse()
@@ -23,7 +23,7 @@ class HomeViewModelUnitTest {
 
     @Test
     fun `Text value is no empty, changer page return true`() {
-        viewModel.textValue.value = "test"
+        viewModel.textValue = "test"
         val testResult = viewModel.changePageNoValue()
 
         assertThat(testResult).isTrue()

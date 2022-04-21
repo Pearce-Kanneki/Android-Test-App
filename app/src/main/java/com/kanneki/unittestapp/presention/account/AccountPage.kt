@@ -32,8 +32,8 @@ fun AccountPage(viewModel: AccountViewModel = hiltViewModel()) {
                 .padding(start = 20.dp)
                 .padding(end = 20.dp)
                 .testTag(TAG_TEXT_FIELD_USER_ACCOUNT),
-            value = viewModel.account.value ?: "",
-            onValueChange = { viewModel.setAccount(it)},
+            value = viewModel.account ?: "",
+            onValueChange = (viewModel::setNewAccount),
             label = { Text(stringResource(id = R.string.account_page_account_hint)) },
             maxLines = 1
         )
@@ -46,8 +46,8 @@ fun AccountPage(viewModel: AccountViewModel = hiltViewModel()) {
                 .padding(start = 20.dp)
                 .padding(end = 20.dp)
                 .testTag(TAG_TEXT_FIELD_USER_PASSWORD),
-            value = viewModel.password.value ?: "",
-            onValueChange = { viewModel.setPassword(it)},
+            value = viewModel.password ?: "",
+            onValueChange = (viewModel::setNewPassword),
             label = { Text(stringResource(id = R.string.account_page_password_hint)) },
             visualTransformation = PasswordVisualTransformation(),
             maxLines = 1
@@ -68,17 +68,17 @@ fun AccountPage(viewModel: AccountViewModel = hiltViewModel()) {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        if (viewModel.loginData.value == null) {
+        if (viewModel.loginData == null) {
             Text(
                 modifier = Modifier.testTag(TAG_TEXT_NOT_VALUE_MESSAGE),
-                text = viewModel.message.value ?: ""
+                text = viewModel.message ?: ""
             )
         } else {
             Text(
                 modifier = Modifier.testTag(TAG_TEXT_VALUE_MESSAGE),
                 text = stringResource(
                     id = R.string.account_page_welcome_user,
-                    viewModel.loginData.value?.userName ?: ""
+                    viewModel.loginData?.userName ?: ""
                 )
             )
         }

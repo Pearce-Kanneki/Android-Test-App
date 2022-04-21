@@ -1,11 +1,10 @@
 package com.kanneki.unittestapp.presention.account
 
-import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.res.stringResource
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kanneki.unittestapp.R
 import com.kanneki.unittestapp.data.fake.UserData
 import com.kanneki.unittestapp.domain.use_case.GetFindUserInfo
 import com.kanneki.unittestapp.util.Resource
@@ -19,35 +18,30 @@ import javax.inject.Inject
 class AccountViewModel @Inject constructor(
     private val getFindUserInfo: GetFindUserInfo
 ) : ViewModel() {
-    private val _account = mutableStateOf<String?>("")
-    val account: State<String?> = _account
-    private val _password = mutableStateOf<String?>("")
-    val password: State<String?> = _password
-    private val _loginData = mutableStateOf<UserData?>(null)
-    val loginData: State<UserData?> = _loginData
+    var account by mutableStateOf<String?>("")
+    var password by mutableStateOf<String?>("")
+    var loginData by mutableStateOf<UserData?>(null)
+    var message by mutableStateOf<String?>("")
 
-    private val _message = mutableStateOf<String?>("")
-    val message: State<String?> = _message
-
-    fun setAccount(value: String?) {
-        _account.value = value
+    fun setNewAccount(value: String?) {
+        account = value
     }
 
-    fun setPassword(value: String?) {
-        _password.value = value
+    fun setNewPassword(value: String?) {
+        password = value
     }
 
     fun sendData() {
         viewModelScope.launch {
-            getFindUserInfo.invoke(account.value, password.value).onEach { result ->
+            getFindUserInfo.invoke(account, password).onEach { result ->
                 when (result) {
                     is Resource.Success -> {
-                        _loginData.value = result.data
-                        _message.value = result.message
+                        loginData = result.data
+                        message = result.message
                     }
                     is Resource.Error -> {
-                        _loginData.value = null
-                        _message.value = result.message
+                        loginData = null
+                        message = result.message
                     }
                 }
             }.launchIn(this)

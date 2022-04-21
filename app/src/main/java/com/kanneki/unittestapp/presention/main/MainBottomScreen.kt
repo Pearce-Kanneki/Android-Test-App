@@ -4,6 +4,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -25,7 +26,9 @@ fun BottomNavigationBar(navController: NavController) {
         cutoutShape = CircleShape,
         content = {
             BottomNavigation {
-                val currentRoute = CurrentRoute(navController = navController)
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
+
                 bottomNavigationItems.forEach{ item ->
                     BottomNavigationItem(
                         selected = currentRoute == item.rounte,
@@ -37,6 +40,8 @@ fun BottomNavigationBar(navController: NavController) {
                         },
                         label = { Text(stringResource(id = item.resourceId)) },
                         alwaysShowLabel = true,
+                        selectedContentColor = Color.White,
+                        unselectedContentColor = Color.White.copy(alpha = .4f),
                         onClick = {
                             if (currentRoute != item.rounte) {
                                 navController.navigate(item.rounte){
