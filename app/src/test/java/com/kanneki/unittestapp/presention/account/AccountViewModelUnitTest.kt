@@ -23,30 +23,30 @@ class AccountViewModelUnitTest {
     @Test
     fun `Set Account new value`() {
         val newValue = "Test Account"
-        viewModel.setAccount(newValue)
+        viewModel.setNewAccount(newValue)
 
-        assertThat(viewModel.account.value).startsWith(newValue)
+        assertThat(viewModel.account).startsWith(newValue)
     }
 
     @Test
     fun `Set Account empty value`() {
-        viewModel.setAccount(null)
+        viewModel.setNewAccount(null)
 
-        assertThat(viewModel.account.value).isNull()
+        assertThat(viewModel.account).isNull()
     }
 
     @Test
     fun `Set Password new value`() {
         val newValue = "Test Password"
-        viewModel.setPassword(newValue)
+        viewModel.setNewPassword(newValue)
 
-        assertThat(viewModel.password.value).startsWith(newValue)
+        assertThat(viewModel.password).startsWith(newValue)
     }
 
     @Test
     fun `Set Password empty value`() {
-        viewModel.setPassword(null)
+        viewModel.setNewPassword(null)
 
-        assertThat(viewModel.password.value).isNull()
+        assertThat(viewModel.password).isNull()
     }
 }

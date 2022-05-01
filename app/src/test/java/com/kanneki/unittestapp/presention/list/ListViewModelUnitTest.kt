@@ -14,14 +14,14 @@ class ListViewModelUnitTest {
     }
 
     @Test
-    fun `View Model init, list size 20`() {
+    fun `View Model init, list size 10`() {
 
         assertThat(viewModel.list).isNotEmpty()
         assertThat(viewModel.list.size).isEqualTo(ListViewModel.INIT_LIST_SIZE)
     }
 
     @Test
-    fun `Add data, list size 21`() {
+    fun `Add data, list size 11`() {
         viewModel.addData()
 
         assertThat(viewModel.list.size).isEqualTo(ListViewModel.INIT_LIST_SIZE + 1)
@@ -41,8 +41,8 @@ class ListViewModelUnitTest {
         viewModel.addData()
         val data = viewModel.list.last()
 
-        assertThat(data.id).isEqualTo(21)
-        assertThat(data.title).isEqualTo("New Title 21")
+        assertThat(data.id).isEqualTo(11)
+        assertThat(data.title).isEqualTo("New Title 11")
         assertThat(data.content).isEqualTo("Message")
     }
 }

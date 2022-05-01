@@ -50,17 +50,17 @@ class ListPageUITest {
             onNodeWithText("Title 1").assertIsDisplayed()
             onNodeWithText("Message 1").assertIsDisplayed()
 
-            // 滑到第20項
-            onNodeWithTag(TAG_ITEMS_LIST).performScrollToIndex(19)
+            // 滑到第10項
+            onNodeWithTag(TAG_ITEMS_LIST).performScrollToIndex(9)
             waitForIdle()
 
-            // 確認第20項是否存在
-            onNodeWithText("Title 20").assertIsDisplayed()
-            onNodeWithText("Message 20").assertIsDisplayed()
+            // 確認第10項是否存在
+            onNodeWithText("Title 10").assertIsDisplayed()
+            onNodeWithText("Message 10").assertIsDisplayed()
 
-            // 確認第21項是否不存在
-            onNodeWithText("Title 21").assertDoesNotExist()
-            onNodeWithText("Message 21").assertDoesNotExist()
+            // 確認第11項是否不存在
+            onNodeWithText("Title 11").assertDoesNotExist()
+            onNodeWithText("Message 11").assertDoesNotExist()
         }
     }
 
@@ -75,12 +75,12 @@ class ListPageUITest {
             onNodeWithTag(TAG_FLOAT_ACTION_BUTTON_ADD).performClick()
             waitForIdle()
 
-            // 滑到第21項
-            onNodeWithTag(TAG_ITEMS_LIST).performScrollToIndex(20)
+            // 滑到第11項
+            onNodeWithTag(TAG_ITEMS_LIST).performScrollToIndex(10)
             waitForIdle()
 
             // 確認新增項目
-            onNodeWithText("New Title 21").assertIsDisplayed()
+            onNodeWithText("New Title 11").assertIsDisplayed()
             onNodeWithText("Message").assertIsDisplayed()
         }
     }

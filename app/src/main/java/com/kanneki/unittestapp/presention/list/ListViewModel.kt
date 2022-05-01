@@ -11,7 +11,7 @@ import javax.inject.Inject
 class ListViewModel @Inject constructor(): ViewModel() {
 
     companion object {
-        const val INIT_LIST_SIZE = 20
+        const val INIT_LIST_SIZE = 10
     }
 
     private val _list = mutableStateListOf<ShowData>()
