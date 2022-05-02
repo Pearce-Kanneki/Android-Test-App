@@ -13,7 +13,7 @@
 
 App功能說明  
 Home頁: 帶值或不帶值換頁  
-List頁: List表(初始化20筆)，與有ADD Button  
+List頁: List表(初始化10筆)，與有ADD Button  
 Account頁: 登入驗證檢查
 
 
